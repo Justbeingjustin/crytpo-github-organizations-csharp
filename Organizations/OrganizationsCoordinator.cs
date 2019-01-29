@@ -10,6 +10,15 @@ namespace Organizations
 {
     public class OrganizationsCoordinator
     {
+        private readonly string _githubUsername;
+        private readonly string _githubPassword;
+
+        public OrganizationsCoordinator(string githubUsername, string githubPassword)
+        {
+            _githubUsername = githubUsername;
+            _githubPassword = githubPassword;
+        }
+
         public List<Organization> GetOrganizations()
         {
             List<Organization> organizations = new List<Organization>();
@@ -22,7 +31,7 @@ namespace Organizations
                     organizations.Add(
                         new Organization()
                         {
-                            Repositories = new RepositoriesCollector(organzationDetail.SourceCodeURL.Replace("https://github.com/", "")).GetRepositories(),
+                            Repositories = new RepositoriesCollector(organzationDetail.SourceCodeURL.Replace("https://github.com/", ""), _githubUsername, _githubPassword).GetRepositories(),
                             Name = organzationDetail.OrganizationName
                         });
                 }

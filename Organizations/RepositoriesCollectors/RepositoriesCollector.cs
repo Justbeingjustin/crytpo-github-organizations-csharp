@@ -12,10 +12,14 @@ namespace Organizations.RepositoriesCollectors
     public class RepositoriesCollector
     {
         private readonly string _organizationName;
+        private readonly string _username;
+        private readonly string _password;
 
-        public RepositoriesCollector(string organizationName)
+        public RepositoriesCollector(string organizationName, string username, string password)
         {
             _organizationName = organizationName;
+            _username = username;
+            _password = password;
         }
 
         public List<Repository> GetRepositories()
@@ -39,7 +43,10 @@ namespace Organizations.RepositoriesCollectors
         {
             System.Threading.Thread.Sleep(1000);
             var client = new RestClient("https://api.github.com/orgs/" + _organizationName + "/repos?page=" + pageNumber);
+            var encoded = System.Convert.ToBase64String(System.Text.Encoding.GetEncoding("ISO-8859-1").GetBytes(_username + ":" + _password));
+
             var request = new RestRequest(Method.GET);
+            request.AddHeader("authorization", "Basic " + encoded);
             IRestResponse response = client.Execute(request);
             var repositories = JsonConvert.DeserializeObject<List<GithubRepositories>>(response.Content);
 
