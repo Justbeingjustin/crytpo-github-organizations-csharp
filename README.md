@@ -41,8 +41,8 @@ namespace ConsoleApp13
     {
         private static void Main(string[] args)
         {
-            var organizationCoordinator = new OrganizationsCoordinator();
-            var organizations = organizationCoordinator.GetOrganizations("Github_Username", "Github_Password");
+            var organizationCoordinator = new OrganizationsCoordinator("Github_Username", "Github_Password");
+            var organizations = organizationCoordinator.GetOrganizations();
         }
     }
 }
