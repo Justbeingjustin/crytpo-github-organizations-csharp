@@ -20,7 +20,7 @@ This library collects github repository urls for the top 100 crypto organization
 ## Nuget
 
  ```
-    PM> Install-Package github-repository-csharp
+    PM> Install-Package crytpo-github-organizations-csharp
 ```
 [![](https://img.shields.io/nuget/v/crytpo-github-organizations-csharp.svg)](https://www.nuget.org/packages/crytpo-github-organizations-csharp/)\
 [![](https://img.shields.io/nuget/dt/crytpo-github-organizations-csharp.svg)](https://www.nuget.org/packages/crytpo-github-organizations-csharp/)
